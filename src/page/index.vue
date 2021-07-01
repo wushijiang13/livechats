@@ -1,18 +1,28 @@
 <template>
     <div class="index">
-        LiveChat 聊天室
         <div class="chat">
-            <div class="media"  v-for="item in state.chatsData">
-                <div class="media-body">
-                    <h4 class="media-heading">{{ dateShow(new Date(item.chatDate),"yyyy-MM-dd hh:mm:ss") }} {{item.nickName}}</h4>
-                    {{item.chatContent}}
+            <div class="chat-media">
+                <h3 class="chat-title"> LiveChat 聊天室</h3>
+                <div class="media"  v-for="item in state.chatsData">
+                    <div class="media-body">
+                        <p class="media-heading">{{ dateShow(new Date(item.chatDate),"yyyy-MM-dd hh:mm:ss") }} <span class="media-name">{{item.nickName}}</span></p>
+                        <p class="media-content">{{item.chatContent}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="enter-main">
-            <input type="text" class="form-control nickname" v-model="state.nickName" placeholder="昵称"/>
-            <input type="text" class="form-control speak" v-model="state.chatContent" placeholder="想说的话"/>
-            <button type="button" @click="addChats()" class="btn btn-info">提交</button>
+            <div class="enter">
+                <a-divider>输入区域来喽</a-divider>
+                <!-- 这里是负责初次进来填写的正常来说不填昵称不让输入的 -->
+                <!-- <div class="init-enter">
+                    <a-input v-model:value="value" placeholder="请输入3-7位您的昵称" />
+                    <a-button type="primary" @click="addChats()" >开始聊天！</a-button>
+                </div>-->
+                <div class="enter-main">
+                    <input type="text" class="form-control nickname" v-model="state.nickName" placeholder="昵称"/>
+                    <input type="text" class="form-control speak" v-model="state.chatContent" placeholder="想说的话"/>
+                    <a-button type="primary" @click="addChats()" >提交</a-button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -28,8 +38,6 @@
                 nickName:"", //昵称
                 chatContent:"",
             });
-            let msg=ref('Hello Vue 3 + TypeScript + Vite');
-
             const dateShow:Function = (date:Date,fmt:String) => {
                 let o = {
                     "M+" : date.getMonth()+1,                 //月份
@@ -55,7 +63,6 @@
             }
 
             return{
-                msg,
                 state,
                 addChats,
                 dateShow
@@ -74,22 +81,30 @@
         width: 750px;
         margin: 0px auto;
     }
-    .title{
-        line-height: 50px;
-        font-size: 24px;
-    }
-    .chat{
-        border: 1px solid #000000;
+    .chat-media{
         width: 100%;
         height: 400px;
         border-radius: 5px;
         overflow-y: scroll;
+        padding: 0px 10px;
+        position: relative;
+    }
+    .chat-title{
+        text-align: center;
+        position: sticky;
+        top: 0px;
+        width: 100%;
+        line-height: 40px;
+        background: #4abf8a;
+        color: #fff;
+    }
+    .enter{
+        margin-top: 20px;
     }
     .enter-main{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 20px;
     }
     .nickname{
         width: 120px !important;
@@ -98,7 +113,26 @@
     .speak{
         margin-right: 10px !important;
     }
-    .media{
-        margin: 10px !important;
+    .media-body{
+        margin: 10px;
+    }
+    .media-heading{
+        color: #595959;
+        font-size: 12px;
+    }
+    .media-name{
+        display: inline-block;
+        padding: 2px 5px;
+        background: #f8f8f8;
+        border-radius: 5px;
+    }
+    .media-content{
+        font-size: 14px;
+        color: #000000;
+        font-weight: 600;
+        margin-top: 5px;
+    }
+    .init-enter{
+        display: inline-block;
     }
 </style>
