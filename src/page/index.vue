@@ -41,8 +41,7 @@
                     <a-textarea
                             v-model:value="userState.chatContent"
                             placeholder="喷上他两句 Enter"
-                            :rows="4"
-                            @input="value=value.replace('/\n','')"
+                            :rows="5"
                             @keydown.enter.stop="addChats"
                             :showCount="true"
                     />
