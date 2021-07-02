@@ -1,12 +1,12 @@
 <template>
-    <div class="index">
+    <div class="norem-index">
         <div class="chat">
             <h3 class="chat-title"> LiveChat 聊天室</h3>
             <a-spin :spinning="state.spinning">
                 <div class="chat-media" ref="chatMedia">
                     <div class="media"  v-for="item in state.chatsData">
                         <div class="media-body">
-                            <p class="media-heading">{{ dateShow(new Date(item.chatDate),"yyyy-MM-dd hh:mm:ss") }} <span class="media-name">{{item.nickName}}</span></p>
+                            <p class="media-heading">{{ dateShow(new Date(item.chatDate),"yyyy/MM/dd hh:mm:ss") }} <span class="media-name">{{item.nickName}}</span></p>
                             <p class="media-content">{{item.chatContent}}</p>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
             }
             const addChats:Function = () =>{
                 userState.chatContent = userState.chatContent.trim();
-                chatSubmit(userState.nickName,userState.chatContent,dateShow(new Date(),"yyyy-MM-dd hh:mm:ss"));
+                chatSubmit(userState.nickName,userState.chatContent,dateShow(new Date(),"yyyy/MM/dd hh:mm:ss"));
                 clearChatContent();
             }
             const emojiAddChat:Function = (item:String)=>{
@@ -180,30 +180,35 @@
 </script>
 
 <style scoped>
-    .index{
-        width: 750px;
+    .norem-index{
+        max-width: 750px;
         margin: 0px auto;
     }
     .chat{
         user-select: none;
     }
     .chat-media{
-        width: 100%;
-        height: 400px;
+        width: 98%;
+        height: 430px;
         border-radius: 5px;
         overflow-y: scroll;
-        margin: 0px 10px;
+        margin: 0px auto;
     }
     .chat-title{
         text-align: center;
         width: 100%;
-        line-height: 40px;
-        background: #4abf8a;
-        color: #fff;
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        /*background: #4abf8a;*/
+        color: #000;
     }
     .enter{
+        width: 98%;
+        height: 180px;
+        margin: 0px auto;
         margin-top: 6px;
-        padding: 0px 10px;
+        overflow: auto;
     }
     .menu{
         height: 36px;
@@ -221,8 +226,9 @@
         width: 200px;
     }
     .menu-emoji{
-        margin: 5px;
+        margin: 2px;
         cursor: pointer;
+        font-size: 20px
     }
     .enter-main{
         font-size: 14px;
