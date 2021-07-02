@@ -41,7 +41,8 @@
                     <a-textarea
                             v-model:value="userState.chatContent"
                             placeholder="喷上他两句 Enter"
-                            :auto-size="{ minRows: 5, maxRows: 5 }"
+                            :rows="4"
+                            @input="value=value.replace('/\n','')"
                             @keydown.enter.stop="addChats"
                             :showCount="true"
                     />
@@ -120,7 +121,10 @@
                 }
                 return fmt;
             }
-            const addChats:Function = () =>{
+            const addChats:Function = (e) =>{
+                event.cancelBubble=true; //禁止换行
+                event.preventDefault();
+                event.stopPropagation();
                 userState.chatContent = userState.chatContent.trim();
                 chatSubmit(userState.nickName,userState.chatContent,dateShow(new Date(),"yyyy/MM/dd hh:mm:ss"));
                 clearChatContent();
