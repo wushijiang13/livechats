@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>livedemo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="index">
+        <div class="norem-index">
+            <div class="chat">
+                <h3 class="chat-title"> LiveChat 聊天室</h3>
+                    <div class="chat-media" ref="chatMedia">
+                        <div class="media"  v-for="item in state.chatsList">
+                            <div class="media-body">
+                                <p class="media-heading">
+                                    {{ dateShow(new Date(item.chatDate),"yyyy/MM/dd hh:mm:ss") }}
+                                    <span class="media-name">{{item.nickName}}</span></p>
+                                <p class="media-content">
+                                    {{item.chatContent}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="enter">
+                        <!--   这里是负责初次进来填写的正常来说不填昵称不让输入的-->
+                        <div class="init-enter"  v-if="userState.nickCheckStatus !== 3">
+                            <input class="nick-input" v-model="userState.nickName" @change="checkNickName(userState.nickName)" placeholder="初次见面，请设定您的昵称~"/>
+                            <button  :disabled="userState.nickCheckStatus !== 2" @click="addNickName">开始聊天！</button>
+                        </div>
+                        <div class="enter-main" v-if="userState.nickCheckStatus === 3">
+                            <div class="menu">
+                                <div>
+                                    <div class="menu-tip" v-show="state.prpoverVisible">
+                                         <span class="menu-emoji" @click="emojiAddChat(item)"  v-for="item in state.emojiList">
+                                            {{item}}
+                                         </span>
+                                    </div>
+                                    <img class="emoji"  @click="()=>{state.prpoverVisible=!state.prpoverVisible}" src="https://www.emojiall.com/favicon.ico"/>
+                                </div>
+                            </div>
+                            <textarea
+                                    class="textarea-enter"
+                                    v-model="userState.chatContent"
+                                    placeholder="你有什么想说的吗？ Enter发送"
+                                    :rows="5"
+                                    @keydown.enter.stop="addChats"
+                            />
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

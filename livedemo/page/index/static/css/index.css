@@ -1,0 +1,93 @@
+.norem-index{
+    max-width: 750px;
+    margin: 0px auto;
+}
+.chat{
+    user-select: none;
+}
+.chat-media{
+    width: 98%;
+    height: 430px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    margin: 0px auto;
+}
+.chat-title{
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    /*background: #4abf8a;*/
+    color: #000;
+}
+.nick-input{
+    width: 200px;
+}
+.enter{
+    width: 98%;
+    height: 180px;
+    margin: 0px auto;
+    margin-top: 6px;
+}
+.menu{
+    height: 36px;
+    width: 100%;
+    background: #f3f3f3;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.emoji{
+    width: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.menu-tip{
+    width: 200px;
+    height: 200px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    position: absolute;
+    overflow-y: auto;
+    top: -200px;
+}
+.menu-emoji{
+    margin: 2px;
+    cursor: pointer;
+    font-size: 20px;
+    height: 20px;
+}
+.enter-main{
+    width: 98%;
+    font-size: 14px;
+}
+.media-body{
+    margin: 10px;
+}
+.media-heading{
+    color: #595959;
+    font-size: 12px;
+}
+.media-name{
+    display: inline-block;
+    padding: 2px 5px;
+    background: #f8f8f8;
+    border-radius: 5px;
+}
+.media-content{
+    font-size: 14px;
+    color: #000000;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.init-enter{
+    display: flex;
+    justify-content: center;
+}
+.textarea-enter{
+    width: 98%;
+}
