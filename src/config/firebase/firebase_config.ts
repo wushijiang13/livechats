@@ -16,10 +16,13 @@ const chatSubmit:Function = (nickName:String,chatContent:String,chatDate:String|
     if (nickName.length == 0) {
         alert("昵称不能为空!");
         return ;
-    }else if(chatContent.length == 0){
+    }else if(chatContent.trim() == ""){
         alert("内容不能为空!");
         return ;
-    }else{
+    }else if(chatContent.length > 200 ){
+        alert("内容超过最大字数!");
+        return ;
+    } else{
         pushChatData(nickName,chatContent,chatDate)
     }
 }
@@ -33,8 +36,9 @@ const pushChatData:Function =(nickName:String,chatContent:String, chatDate:Strin
 }
 
 let chatsRef:any = firebase.database().ref('chatList'); //连接实时数据库
+let emojiRef:any = firebase.database().ref('emoji'); //连接实时数据库
 
-export {chatsRef, chatSubmit}
+export {chatsRef ,emojiRef , chatSubmit}
 
 
 
